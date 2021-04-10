@@ -54,4 +54,5 @@ public class Localization {
     public void setCountry(String country) {
         this.country = country;
     }
+
 }
