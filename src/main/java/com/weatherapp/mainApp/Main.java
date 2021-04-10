@@ -1,5 +1,7 @@
 package com.weatherapp.mainApp;
 
+import com.weatherapp.model.MapperJsonToWeather;
+
 import java.util.Scanner;
 
 public class Main {
@@ -30,7 +32,8 @@ public class Main {
 
                     break;
                 case 3:
-
+                    MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
+                    System.out.println(mapperJsonToWeather.getWeatherObject());
                     break;
                 case 4:
 
