@@ -1,13 +1,16 @@
 package com.weatherapp.model;
 
 public class Weather {
-    int temperature;
+    double temperature;
     int pressure;
     int humidity;
     String windDirection;
     int windSpeed;
 
-    public Weather(int temperature, int pressure, int humidity, String windDirection, int windSpeed) {
+    public Weather() {
+    }
+
+    public Weather(double temperature, int pressure, int humidity, String windDirection, int windSpeed) {
         this.temperature = temperature;
         this.pressure = pressure;
         this.humidity = humidity;
@@ -15,11 +18,11 @@ public class Weather {
         this.windSpeed = windSpeed;
     }
 
-    public int getTemperature() {
+    public double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(int temperature) {
+    public void setTemperature(double temperature) {
         this.temperature = temperature;
     }
 
@@ -53,5 +56,16 @@ public class Weather {
 
     public void setWindSpeed(int windSpeed) {
         this.windSpeed = windSpeed;
+    }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "temperature=" + temperature +
+                ", pressure=" + pressure +
+                ", humidity=" + humidity +
+                ", windDirection='" + windDirection + '\'' +
+                ", windSpeed=" + windSpeed +
+                '}';
     }
 }

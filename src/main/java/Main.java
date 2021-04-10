@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.weatherapp.model.MapperJsonToWeather;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,12 +17,9 @@ public class Main {
         System.out.println("Main");
         System.out.println("Nowy branch develop");
 
-        String myJSONString = "{'test': '100.00'}";
-        JsonObject jobj = new Gson().fromJson(myJSONString, JsonObject.class);
+        MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
+        System.out.println(mapperJsonToWeather.getWeatherObject());
 
-        String result = jobj.get("test").getAsString();
-
-        System.out.println(result);
 
     }
 
