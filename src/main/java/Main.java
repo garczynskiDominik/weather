@@ -15,23 +15,27 @@ public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
 
 
-        Localization localization = new Localization(51.2465, 22.5684, "Lublin", "Poland");
-        new HttpClientToSendRequest().jsonFromHttpRequest(localization);
+        Localization localization1 = new Localization(51.2465, 22.5684, "Lublin", "Poland");
+        Localization localization2 = new Localization(51.2465, 22.5684, "Lublieeen", "Poland");
+        Localization localization3 = new Localization(51.2465, 22.5684, "Lutblin", "Poland");
+        Localization localization4 = new Localization(51.2465, 22.5684, "Lubltttin", "Poland");
+        Localization localization5 = new Localization();
+        Localization localization6 = new Localization();
+        Localization localization7 = new Localization();
+        Localization localization8 = new Localization();
 
-        URIBuilder builder = new URIBuilder();
-        builder.setScheme("http").setHost("www.google.com").setPath("/search")
-                .setParameter("q", "httpclient")
-                .setParameter("btnG", "Google Search")
-                .setParameter("aq", "f")
-                .setParameter("oq", "");
-        URI uri = builder.build();
-        HttpGet httpget = new HttpGet(uri);
-        System.out.println(httpget.getURI());
+        System.out.println(localization1);
+        System.out.println(localization2);
+        System.out.println(localization3);
+        System.out.println(localization4);
+        System.out.println(localization5);
+        System.out.println(localization6);
+        System.out.println(localization7);
+        System.out.println(localization8);
+
 
         MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
-        System.out.println(mapperJsonToWeather.getWeatherObject(localization));
-
-
+        //System.out.println(mapperJsonToWeather.getWeatherObject(localization));
 
 
     }

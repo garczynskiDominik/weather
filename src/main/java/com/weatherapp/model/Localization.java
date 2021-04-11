@@ -1,7 +1,8 @@
 package com.weatherapp.model;
 
 public class Localization {
-    private static long id = 1;
+    private static long idCounter = 1;
+    long id;
     double latitude;
     double longitude;
     String region;
@@ -9,11 +10,11 @@ public class Localization {
     String jsonWithInfo;
 
     public Localization() {
-        id++;
+        this.id = idCounter++;
     }
 
     public Localization(double latitude, double longitude, String region, String country) {
-        id++;
+        this.id = idCounter++;
         this.latitude = latitude;
         this.longitude = longitude;
         this.region = region;
