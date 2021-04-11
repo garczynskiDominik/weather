@@ -1,11 +1,9 @@
 package com.weatherapp.mainApp;
 
 import com.weatherapp.model.HttpClientToSendRequest;
-import com.weatherapp.model.Localization;
 import com.weatherapp.model.MapperJsonToWeather;
 import com.weatherapp.repository.LocationRepository;
 
-import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 public class Main {
