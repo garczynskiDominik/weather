@@ -10,14 +10,19 @@ import java.util.List;
 public class LocationRepository {
 
     public List<Localization> localizations = new ArrayList<>();
-    UserInput userInterface = new UserInput();
+    UserInput userInput = new UserInput();
+    UserOutput userOutput = new UserOutput();
 
     public void addLocation() {
-        userInterface.inputNewLocation(localizations);
+        userInput.inputNewLocation(localizations);
     }
 
     public void showAllLocations() {
-        UserOutput.outputAllLocations(localizations);
+        userOutput.outputAllLocations(localizations);
+    }
+
+    public void findByLocationName() {
+        userInput.inputLocationName(localizations);
     }
 
 

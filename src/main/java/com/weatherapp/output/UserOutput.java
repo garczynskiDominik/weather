@@ -12,4 +12,5 @@ public class UserOutput {
             System.out.println(localization);
         }
     }
+
 }

@@ -3,8 +3,7 @@ import com.google.gson.JsonObject;
 import com.weatherapp.model.HttpClientToSendRequest;
 import com.weatherapp.model.Localization;
 import com.weatherapp.model.MapperJsonToWeather;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.utils.URIBuilder;
+
 
 import java.io.IOException;
 import java.net.URI;

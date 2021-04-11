@@ -31,16 +31,16 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Podaj index lokalizacji");
-                    int index = scanner.nextInt();
-                    httpClientToSendRequest.jsonFromHttpRequest(locationRepository.localizations.get(index - 1));
-                    System.out.print(locationRepository.localizations.get(index - 1).getName()+": ");
-                    System.out.println(mapperJsonToWeather.getWeatherObject(locationRepository.localizations.get(index - 1)));
+                    int index = scanner.nextInt() - 1;
+                    httpClientToSendRequest.jsonFromHttpRequest(locationRepository.localizations.get(index));
+                    System.out.print(locationRepository.localizations.get(index).getName()+": ");
+                    System.out.println(mapperJsonToWeather.getWeatherObject(locationRepository.localizations.get(index)));
                     break;
                 case 4:
 
                     break;
                 case 5:
-
+                    locationRepository.findByLocationName();
                     break;
                 case 6:
 
@@ -51,6 +51,7 @@ public class Main {
                 case 8:
 
                     break;
+
             }
 
         } while (choice != 0);
