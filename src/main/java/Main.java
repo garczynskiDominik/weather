@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
 
 
-        Localization localization = new Localization(50.7535, 23.7638, "Werbkowice", "Poland");
+        Localization localization = new Localization(51.2465, 22.5684, "Lublin", "Poland");
         new HttpClientToSendRequest().jsonFromHttpRequest(localization);
 
 
@@ -24,7 +24,6 @@ public class Main {
         System.out.println(mapperJsonToWeather.getWeatherObject(localization));
 
 
-//        System.out.println(mapperJsonToWeather.getWeatherObject());
 
 
     }

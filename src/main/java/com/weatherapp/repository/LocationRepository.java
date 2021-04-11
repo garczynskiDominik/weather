@@ -19,9 +19,9 @@ public class LocationRepository {
         System.out.println("Podaj region: ");
         location.setRegion(scanner.nextLine());
         System.out.println("Podaj szerokość geograficzną: ");
-        location.setLatitude(scanner.nextInt());
+        location.setLatitude(scanner.nextDouble());
         System.out.println("Podaj długość geograficzną: ");
-        location.setLongitude(scanner.nextInt());
+        location.setLongitude(scanner.nextDouble());
         localizations.add(location);
         System.out.println("DODANO LOKALIZACJĘ DO BAZY");
     }
