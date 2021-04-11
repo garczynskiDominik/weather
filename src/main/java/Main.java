@@ -20,7 +20,7 @@ public class Main {
         MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
         System.out.println(mapperJsonToWeather.getWeatherObject());
 
-        Localization loc = new Localization(1,50,50,"London", "UK");
+        Localization loc = new Localization(1,50.0453,22.0964,"Krasne", "Poland");
         System.out.println(new HttpClientToSendRequest().jsonFromHttpRequest(loc));
 
 
