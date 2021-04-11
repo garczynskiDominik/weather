@@ -5,6 +5,7 @@ import com.weatherapp.model.HttpClientToSendRequest;
 import com.weatherapp.model.MapperJsonToWeather;
 import com.weatherapp.repository.LocationRepository;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -21,8 +22,12 @@ public class Main {
         do {
 
             showMenu();
+            try {
+                choice = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("PODANO ZŁY ZNAK");
+            }
 
-            choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
@@ -53,7 +58,8 @@ public class Main {
                 case 8:
 
                     break;
-
+                default:
+                    System.out.println("Podano złą liczbę!");
             }
 
         } while (choice != 0);
