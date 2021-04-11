@@ -1,6 +1,8 @@
 package com.weatherapp.mainApp;
 
+import com.weatherapp.model.Localization;
 import com.weatherapp.model.MapperJsonToWeather;
+import com.weatherapp.repository.LocationRepository;
 
 import java.util.Scanner;
 
@@ -8,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         int choice = 0;
+        LocationRepository locationRepository = new LocationRepository();
         Scanner scanner = new Scanner(System.in);
 
         do {
@@ -18,10 +21,10 @@ public class Main {
 
             switch (choice) {
                 case 1:
-
+                    locationRepository.addLocation();
                     break;
                 case 2:
-
+                    locationRepository.showAllLocations();
                     break;
                 case 3:
                     MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();

@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.weatherapp.model.Localization;
 import com.weatherapp.model.MapperJsonToWeather;
 
 import java.io.IOException;
@@ -19,6 +20,8 @@ public class Main {
 
         MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
         System.out.println(mapperJsonToWeather.getWeatherObject());
+
+
 
 
     }

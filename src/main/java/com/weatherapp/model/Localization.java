@@ -1,26 +1,26 @@
 package com.weatherapp.model;
 
 public class Localization {
-    int id;
+    private static long id = 1;
     double latitude;
     double longitude;
     String region;
     String country;
 
-    public Localization(int id, double latitude, double longitude, String region, String country) {
-        this.id = id;
+    public Localization() {
+        id++;
+    }
+
+    public Localization(double latitude, double longitude, String region, String country) {
+        id++;
         this.latitude = latitude;
         this.longitude = longitude;
         this.region = region;
         this.country = country;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public double getLatitude() {
@@ -55,4 +55,14 @@ public class Localization {
         this.country = country;
     }
 
+    @Override
+    public String toString() {
+        return "Lokalizacja{" +
+                "id=" + id +
+                ", współrzędne=" + latitude +
+                ", " + longitude +
+                ", region='" + region + '\'' +
+                ", kraj='" + country + '\'' +
+                '}';
+    }
 }
