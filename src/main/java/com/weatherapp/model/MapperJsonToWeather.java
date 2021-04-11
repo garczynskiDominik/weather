@@ -7,8 +7,8 @@ public class MapperJsonToWeather {
     private Weather weather;
 
 
-    public Weather getWeatherObject() {
-        String myJSONString = ",\"temperature\":18,\"weather_code\":113,\"weather_icons\":[\"https:\\/\\/assets.weatherstack.com\\/images\\/wsymbols01_png_64\\/wsymbol_0001_sunny.png\"],\"weather_descriptions\":[\"Sunny\"],\"wind_speed\":22,\"wind_degree\":210,\"wind_dir\":\"SSW\",\"pressure\":1017,\"precip\":0,\"humidity\":30,\"cloudcover\":0,\"feelslike\":18,\"uv_index\":4,\"visibility\":10,\"is_day\":\"yes\"}}";
+    public Weather getWeatherObject(Localization localization) {
+        String myJSONString = localization.getJsonWithInfo();
         JsonObject jobj = new Gson().fromJson(myJSONString, JsonObject.class);
 
         JsonObject current = jobj.get("current").getAsJsonObject();

@@ -20,20 +20,6 @@ public class HttpClientToSendRequest {
                 .append(localization.getLongitude())
                 .toString();
 
-        URIBuilder builder = new URIBuilder();
-        builder.setScheme("http").setHost("www.google.com").setPath("/search")
-                .setParameter("q", "httpclient")
-                .setParameter("btnG", "Google Search")
-                .setParameter("aq", "f")
-                .setParameter("oq", "");
-        URI uri = builder.build();
-
-        HttpGet httpget = new HttpGet(uri);
-        System.out.println(httpget.getURI());
-
-
-
-
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(uri2))
@@ -46,7 +32,9 @@ public class HttpClientToSendRequest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        localization.setJsonWithInfo(response.body().toString());
         return response.body().toString();
     }
+
 }
 

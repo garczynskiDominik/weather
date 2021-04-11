@@ -28,7 +28,7 @@ public class Main {
                     break;
                 case 3:
                     MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
-                    System.out.println(mapperJsonToWeather.getWeatherObject());
+                    System.out.println(mapperJsonToWeather.getWeatherObject(locationRepository.localizations.get(0)));
                     break;
                 case 4:
 

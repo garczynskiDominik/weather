@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.weatherapp.model.HttpClientToSendRequest;
 import com.weatherapp.model.Localization;
 import com.weatherapp.model.MapperJsonToWeather;
 
@@ -13,15 +14,17 @@ import java.net.http.HttpRequest;
 
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
-        System.out.println("hello");
-        System.out.println("Aplikacja do pogody");
-        System.out.println("Main");
-        System.out.println("Nowy branch develop");
+
+
+        Localization localization = new Localization(50.7535, 23.7638, "Werbkowice", "Poland");
+        new HttpClientToSendRequest().jsonFromHttpRequest(localization);
+
 
         MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
-        System.out.println(mapperJsonToWeather.getWeatherObject());
+        System.out.println(mapperJsonToWeather.getWeatherObject(localization));
 
 
+//        System.out.println(mapperJsonToWeather.getWeatherObject());
 
 
     }
