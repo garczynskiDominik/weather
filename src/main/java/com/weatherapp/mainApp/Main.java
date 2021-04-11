@@ -1,7 +1,5 @@
 package com.weatherapp.mainApp;
 
-import com.weatherapp.model.MapperJsonToWeather;
-
 import java.util.Scanner;
 
 public class Main {
@@ -12,7 +10,15 @@ public class Main {
 
         do {
 
-            showMenu();
+            System.out.println("[1] Dodaj lokalizację do bazy danych");
+            System.out.println("[2] Wyświetl dodane lokalizacje");
+            System.out.println("[3] Wyświetl wartości pogodowe");
+            System.out.println("[4] Edytuj lokalizacje");
+            System.out.println("[5] Wyszukaj lokalizacje po nazwie");
+            System.out.println("[6] Dane statystyczne");
+            System.out.println("[7] Zapis danych");
+            System.out.println("[8] Odczyt danych");
+            System.out.println("[0] WYJŚCIE");
 
             choice = scanner.nextInt();
 
@@ -24,8 +30,7 @@ public class Main {
 
                     break;
                 case 3:
-                    MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
-                    System.out.println(mapperJsonToWeather.getWeatherObject());
+
                     break;
                 case 4:
 
@@ -46,17 +51,4 @@ public class Main {
 
         } while (choice != 0);
     }
-
-    public static void showMenu() {
-        System.out.println("[1] Dodaj lokalizację do bazy danych");
-        System.out.println("[2] Wyświetl dodane lokalizacje");
-        System.out.println("[3] Wyświetl wartości pogodowe");
-        System.out.println("[4] Edytuj lokalizacje");
-        System.out.println("[5] Wyszukaj lokalizacje po nazwie");
-        System.out.println("[6] Dane statystyczne");
-        System.out.println("[7] Zapis danych");
-        System.out.println("[8] Odczyt danych");
-        System.out.println("[0] WYJŚCIE");
-    }
-
 }
