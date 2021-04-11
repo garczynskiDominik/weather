@@ -3,14 +3,13 @@ import com.google.gson.JsonObject;
 import com.weatherapp.model.HttpClientToSendRequest;
 import com.weatherapp.model.Localization;
 import com.weatherapp.model.MapperJsonToWeather;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.http.HttpRequest;
+
 
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
@@ -19,6 +18,15 @@ public class Main {
         Localization localization = new Localization(51.2465, 22.5684, "Lublin", "Poland");
         new HttpClientToSendRequest().jsonFromHttpRequest(localization);
 
+        URIBuilder builder = new URIBuilder();
+        builder.setScheme("http").setHost("www.google.com").setPath("/search")
+                .setParameter("q", "httpclient")
+                .setParameter("btnG", "Google Search")
+                .setParameter("aq", "f")
+                .setParameter("oq", "");
+        URI uri = builder.build();
+        HttpGet httpget = new HttpGet(uri);
+        System.out.println(httpget.getURI());
 
         MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
         System.out.println(mapperJsonToWeather.getWeatherObject(localization));
