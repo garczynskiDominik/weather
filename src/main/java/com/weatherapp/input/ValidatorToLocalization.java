@@ -1,5 +1,8 @@
 package com.weatherapp.input;
 
+import com.weatherapp.repository.LocationRepository;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class ValidatorToLocalization {
@@ -40,6 +43,19 @@ public class ValidatorToLocalization {
             name = scanner.nextLine();
         }
         return null;
+    }
+
+    public int indexOfArrayValidator(List list, int index) {
+        boolean isCorrect = true;
+        while (isCorrect) {
+            if (list.size() > index - 1) {
+                return index;
+            }
+            System.out.println("Podałeś index kolkalizacji której nie ma na liscie, podaj właściwy index");
+            Scanner scanner = new Scanner(System.in);
+            index = scanner.nextInt();
+        }
+        return 0;
     }
 
 
