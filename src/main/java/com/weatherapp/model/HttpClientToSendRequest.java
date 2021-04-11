@@ -1,5 +1,8 @@
 package com.weatherapp.model;
 
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -16,6 +19,20 @@ public class HttpClientToSendRequest {
                 .append(",")
                 .append(localization.getLongitude())
                 .toString();
+
+        URIBuilder builder = new URIBuilder();
+        builder.setScheme("http").setHost("www.google.com").setPath("/search")
+                .setParameter("q", "httpclient")
+                .setParameter("btnG", "Google Search")
+                .setParameter("aq", "f")
+                .setParameter("oq", "");
+        URI uri = builder.build();
+
+        HttpGet httpget = new HttpGet(uri);
+        System.out.println(httpget.getURI());
+
+
+
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
