@@ -63,7 +63,7 @@ public class Weather {
         return +temperature +
                 ", pressure=" + pressure +
                 ", humidity=" + humidity +
-                ", windDirection='" + windDirection + '\'' +
+                ", windDirection='" + windDirection +
                 ", windSpeed=" + windSpeed;
     }
 }
