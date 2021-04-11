@@ -34,8 +34,9 @@ public class Main {
                 case 3:
                     System.out.println("Podaj index lokalizacji");
                     int index = scanner.nextInt();
-                    httpClientToSendRequest.jsonFromHttpRequest(locationRepository.localizations.get(index));
-                    System.out.println(mapperJsonToWeather.getWeatherObject(locationRepository.localizations.get(index)));
+                    httpClientToSendRequest.jsonFromHttpRequest(locationRepository.localizations.get(index - 1));
+                    System.out.print(locationRepository.localizations.get(index - 1).getName()+": ");
+                    System.out.println(mapperJsonToWeather.getWeatherObject(locationRepository.localizations.get(index - 1)));
                     break;
                 case 4:
 

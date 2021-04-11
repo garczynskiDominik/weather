@@ -5,6 +5,7 @@ public class Localization {
     long id;
     double latitude;
     double longitude;
+    String name;
     String region;
     String country;
     String jsonWithInfo;
@@ -27,6 +28,18 @@ public class Localization {
 
     public void setJsonWithInfo(String jsonWithInfo) {
         this.jsonWithInfo = jsonWithInfo;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public long getId() {

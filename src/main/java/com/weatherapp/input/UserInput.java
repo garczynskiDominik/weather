@@ -14,7 +14,9 @@ public class UserInput {
         System.out.println("Podaj kraj: ");
         location.setCountry(scanner.nextLine());
         System.out.println("Podaj region: ");
-        location.setRegion(scanner.nextLine());
+        location.setCountry(scanner.nextLine());
+        System.out.println("Podaj miejscowosc: ");
+        location.setName(scanner.nextLine());
         System.out.println("Podaj szerokość geograficzną: ");
         location.setLatitude(scanner.nextDouble());
         System.out.println("Podaj długość geograficzną: ");

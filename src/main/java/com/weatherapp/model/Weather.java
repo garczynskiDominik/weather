@@ -60,12 +60,10 @@ public class Weather {
 
     @Override
     public String toString() {
-        return "Weather{" +
-                "temperature=" + temperature +
+        return +temperature +
                 ", pressure=" + pressure +
                 ", humidity=" + humidity +
                 ", windDirection='" + windDirection + '\'' +
-                ", windSpeed=" + windSpeed +
-                '}';
+                ", windSpeed=" + windSpeed;
     }
 }
