@@ -1,9 +1,11 @@
 package com.weatherapp.mainApp;
 
+import com.weatherapp.model.HttpClientToSendRequest;
 import com.weatherapp.model.Localization;
 import com.weatherapp.model.MapperJsonToWeather;
 import com.weatherapp.repository.LocationRepository;
 
+import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +13,9 @@ public class Main {
 
         int choice = 0;
         LocationRepository locationRepository = new LocationRepository();
+        MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
+        HttpClientToSendRequest httpClientToSendRequest = new HttpClientToSendRequest();
+
         Scanner scanner = new Scanner(System.in);
 
         do {
@@ -27,8 +32,10 @@ public class Main {
                     locationRepository.showAllLocations();
                     break;
                 case 3:
-                    MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
-                    System.out.println(mapperJsonToWeather.getWeatherObject(locationRepository.localizations.get(0)));
+                    System.out.println("Podaj index lokalizacji");
+                    int index = scanner.nextInt();
+                    httpClientToSendRequest.jsonFromHttpRequest(locationRepository.localizations.get(index));
+                    System.out.println(mapperJsonToWeather.getWeatherObject(locationRepository.localizations.get(index)));
                     break;
                 case 4:
 
@@ -53,7 +60,7 @@ public class Main {
     public static void showMenu() {
         System.out.println("[1] Dodaj lokalizację do bazy danych");
         System.out.println("[2] Wyświetl dodane lokalizacje");
-        System.out.println("[3] Wyświetl wartości pogodowe");
+        System.out.println("[3] Wyświetl wartości pogodowe dla miejscosości o podanym indeksie");
         System.out.println("[4] Edytuj lokalizacje");
         System.out.println("[5] Wyszukaj lokalizacje po nazwie");
         System.out.println("[6] Dane statystyczne");
