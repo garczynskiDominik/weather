@@ -25,5 +25,9 @@ public class LocationRepository {
         userInput.inputLocationName(localizations);
     }
 
+    public void updateLocation() {
+        userInput.inputUpdateLocation(localizations);
+    }
+
 
 }

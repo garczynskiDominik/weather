@@ -44,7 +44,7 @@ public class Main {
                     System.out.println(mapperJsonToWeather.getWeatherObject(locationRepository.localizations.get(index)));
                     break;
                 case 4:
-
+                    locationRepository.updateLocation();
                     break;
                 case 5:
                     locationRepository.findByLocationName();
