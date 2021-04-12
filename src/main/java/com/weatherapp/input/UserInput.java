@@ -34,13 +34,11 @@ public class UserInput {
         Scanner scanner = new Scanner(System.in);
         System.out.println("=========== WYSZUKIWANIE LOKALIZACJI PO NAZWIE MIEJSCOWOŚCI ===========");
         System.out.print("Podaj nazwę miejscowości: ");
-        scanner.nextLine();
         String name = scanner.nextLine();
         for (Localization localization : localizations) {
-            if(name.equals(localization.getName())) {
+            if (name.equals(localization.getName())) {
                 System.out.println(localization);
-            }
-            else {
+            } else {
                 System.out.println("!!! NIE MA TAKIEJ MIEJSCOWOŚCI !!!");
             }
         }
