@@ -22,9 +22,9 @@ public class UserOutput {
 
     public static void outputAllLocations(List<Localization> localizations) {
         System.out.println("=========== WSZYSTKIE ZAPISANE LOKALIZACJE ===========");
-        for (Localization localization : localizations) {
-            System.out.println(localization);
-        }
+        localizations.stream()
+                .forEach(System.out::println);
+
     }
 
 }
