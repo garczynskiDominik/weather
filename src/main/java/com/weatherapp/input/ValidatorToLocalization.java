@@ -25,7 +25,7 @@ public class ValidatorToLocalization {
             if (latitude > -90 && latitude < 90) {
                 return latitude;
             }
-            System.out.println("Podałeś zle współrzedne, podaj poprawną szerokość");
+            System.out.print("Podałeś złe współrzędne, podaj poprawną szerokość: ");
             Scanner scanner = new Scanner(System.in);
             latitude = scanner.nextDouble();
         }
@@ -38,7 +38,7 @@ public class ValidatorToLocalization {
             if (!name.isEmpty()) {
                 return name;
             }
-            System.out.println("Podałeś pustą nazme, podaj właściwą nazwe");
+            System.out.print("Podałeś pustą nazwę, podaj właściwą nazwe: ");
             Scanner scanner = new Scanner(System.in);
             name = scanner.nextLine();
         }
@@ -51,7 +51,7 @@ public class ValidatorToLocalization {
             if (list.size() > index - 1) {
                 return index;
             }
-            System.out.println("Podałeś index kolkalizacji której nie ma na liscie, podaj właściwy index");
+            System.out.print("Podałeś index lokalizacji której nie ma na liście, podaj właściwy index: ");
             Scanner scanner = new Scanner(System.in);
             index = scanner.nextInt();
         }

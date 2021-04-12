@@ -1,5 +1,6 @@
 package com.weatherapp.mainApp;
 
+import com.weatherapp.input.UserInput;
 import com.weatherapp.input.ValidatorToLocalization;
 import com.weatherapp.model.HttpClientToSendRequest;
 import com.weatherapp.model.MapperJsonToWeather;
@@ -16,6 +17,7 @@ public class Main {
         MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
         HttpClientToSendRequest httpClientToSendRequest = new HttpClientToSendRequest();
         ValidatorToLocalization validatorToLocalization = new ValidatorToLocalization();
+        UserInput userInput = new UserInput();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -39,11 +41,7 @@ public class Main {
                     locationRepository.showAllLocations();
                     break;
                 case 3:
-                    System.out.print("Podaj id lokalizacji: ");
-                    int index = validatorToLocalization.indexOfArrayValidator(locationRepository.localizations, (scanner.nextInt() - 1));
-                    httpClientToSendRequest.jsonFromHttpRequest(locationRepository.localizations.get(index));
-                    System.out.print(locationRepository.localizations.get(index).getName() + ": ");
-                    System.out.println(mapperJsonToWeather.getWeatherObject(locationRepository.localizations.get(index)));
+                    userInput.inputLocationIndexForecast(locationRepository.localizations);
                     break;
                 case 4:
                     locationRepository.updateLocation();
