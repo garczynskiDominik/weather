@@ -22,8 +22,9 @@ public class UserOutput {
 
     public static void outputAllLocations(List<Localization> localizations) {
         System.out.println("=========== WSZYSTKIE ZAPISANE LOKALIZACJE ===========");
+        System.out.println("Miejscowości");
         localizations.stream()
-                .forEach(System.out::println);
+                .forEach(cityName -> System.out.println(cityName.getId() + "." + cityName.getName()));
 
     }
 
