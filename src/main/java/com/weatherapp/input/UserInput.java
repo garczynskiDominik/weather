@@ -14,15 +14,15 @@ public class UserInput {
         Localization location = new Localization();
         ValidatorToLocalization validatorToLocalization = new ValidatorToLocalization();
         System.out.println("=========== DODAWANIE NOWEJ LOKALIZACJI ===========");
-        System.out.println("Podaj kraj: ");
+        System.out.print("Podaj kraj: ");
         location.setCountry(validatorToLocalization.stringValidator(scanner.nextLine()));
-        System.out.println("Podaj region: ");
+        System.out.print("Podaj region: ");
         location.setRegion(scanner.nextLine());
-        System.out.println("Podaj miejscowosc: ");
+        System.out.print("Podaj miejscowosc: ");
         location.setName(validatorToLocalization.stringValidator(scanner.nextLine()));
-        System.out.println("Podaj szerokość geograficzną: ");
+        System.out.print("Podaj szerokość geograficzną: ");
         location.setLatitude(validatorToLocalization.latiValidator(scanner.nextDouble()));
-        System.out.println("Podaj długość geograficzną: ");
+        System.out.print("Podaj długość geograficzną: ");
         location.setLongitude(validatorToLocalization.longValidator(scanner.nextDouble()));
         localizations.add(location);
         System.out.println("=========== DODANO LOKALIZACJĘ DO BAZY ===========");
@@ -38,25 +38,26 @@ public class UserInput {
                 System.out.println(localization);
             }
             else {
-                System.out.println("=========== NIE MA TAKIEJ MIEJSCOWOŚCI ===========");
+                System.out.println("!!! NIE MA TAKIEJ MIEJSCOWOŚCI !!!");
             }
         }
     }
 
     public void inputUpdateLocation(List<Localization> localizations) {
         System.out.println("=========== AKTUALIZACJA LOKALIZACJI ===========");
-        System.out.println("Podaj id lokalizacji, którą chcesz edytować: ");
+        System.out.print("Podaj id lokalizacji, którą chcesz aktualizować: ");
         int id = scanner.nextInt() - 1;
         ValidatorToLocalization validatorToLocalization = new ValidatorToLocalization();
-        System.out.println("Podaj kraj: ");
+        System.out.print("Podaj kraj: ");
+        scanner.nextLine();
         localizations.get(id).setCountry(validatorToLocalization.stringValidator(scanner.nextLine()));
-        System.out.println("Podaj region: ");
+        System.out.print("Podaj region: ");
         localizations.get(id).setRegion(scanner.nextLine());
-        System.out.println("Podaj miejscowosc: ");
+        System.out.print("Podaj miejscowosc: ");
         localizations.get(id).setName(validatorToLocalization.stringValidator(scanner.nextLine()));
-        System.out.println("Podaj szerokość geograficzną: ");
+        System.out.print("Podaj szerokość geograficzną: ");
         localizations.get(id).setLatitude(validatorToLocalization.latiValidator(scanner.nextDouble()));
-        System.out.println("Podaj długość geograficzną: ");
+        System.out.print("Podaj długość geograficzną: ");
         localizations.get(id).setLongitude(validatorToLocalization.longValidator(scanner.nextDouble()));
         System.out.println("=========== POMYŚLNIE ZAKTUALIZOWANO ===========");
     }

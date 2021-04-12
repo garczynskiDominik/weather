@@ -60,10 +60,10 @@ public class Weather {
 
     @Override
     public String toString() {
-        return +temperature +
-                ", pressure=" + pressure +
-                ", humidity=" + humidity +
-                ", windDirection='" + windDirection +
-                ", windSpeed=" + windSpeed;
+        return "temperatura = " + temperature + "\u00B0" + "C" +
+                ", ciśnienie = " + pressure + "hPa" +
+                ", wilgotność = " + humidity + "%" +
+                ", kierunek wiatru = " + windDirection +
+                ", prędkość wiatru = " + windSpeed + "km/h";
     }
 }

@@ -25,7 +25,9 @@ public class Main {
             try {
                 choice = scanner.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("PODANO ZŁY ZNAK");
+                System.out.println("!!! PODANO ZŁY ZNAK !!!");
+                System.out.println("=========== ZAMYKAM PROGRAM ===========");
+                break;
             }
 
 
@@ -37,7 +39,7 @@ public class Main {
                     locationRepository.showAllLocations();
                     break;
                 case 3:
-                    System.out.println("Podaj index lokalizacji");
+                    System.out.print("Podaj id lokalizacji: ");
                     int index = validatorToLocalization.indexOfArrayValidator(locationRepository.localizations, (scanner.nextInt() - 1));
                     httpClientToSendRequest.jsonFromHttpRequest(locationRepository.localizations.get(index));
                     System.out.print(locationRepository.localizations.get(index).getName() + ": ");
@@ -58,23 +60,28 @@ public class Main {
                 case 8:
 
                     break;
+                case 0:
+                    System.out.println("=========== ZAMYKAM PROGRAM ===========");
+                    break;
                 default:
-                    System.out.println("Podano złą liczbę!");
+                    System.out.println("!!! PODANO ZŁĄ LICZBĘ !!!");
             }
 
         } while (choice != 0);
     }
 
     public static void showMenu() {
+        System.out.println("=========== MENU PROGRAMU POGODYNKA ===========");
         System.out.println("[1] Dodaj lokalizację do bazy danych");
         System.out.println("[2] Wyświetl dodane lokalizacje");
         System.out.println("[3] Wyświetl wartości pogodowe dla miejscosości o podanym indeksie");
-        System.out.println("[4] Edytuj lokalizacje");
+        System.out.println("[4] Aktualizacja lokalizacji");
         System.out.println("[5] Wyszukaj lokalizacje po nazwie");
         System.out.println("[6] Dane statystyczne");
         System.out.println("[7] Zapis danych");
         System.out.println("[8] Odczyt danych");
         System.out.println("[0] WYJŚCIE");
+        System.out.print("Wybór: ");
     }
 
 }

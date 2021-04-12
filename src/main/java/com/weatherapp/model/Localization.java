@@ -80,12 +80,12 @@ public class Localization {
 
     @Override
     public String toString() {
-        return "Lokalizacja{" +
-                "id=" + id +
-                ", współrzędne=" + latitude +
+        return "Miejscowość " + name + " { " +
+                "id = " + id +
+                ", współrzędne = " + latitude +
                 ", " + longitude +
-                ", region='" + region + '\'' +
-                ", kraj='" + country + '\'' +
-                '}';
+                ", region = " + region +
+                ", kraj = " + country +
+                " }";
     }
 }
