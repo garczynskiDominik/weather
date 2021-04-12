@@ -4,6 +4,7 @@ import com.weatherapp.input.ValidatorToLocalization;
 import com.weatherapp.model.HttpClientToSendRequest;
 import com.weatherapp.model.Localization;
 import com.weatherapp.model.MapperJsonToWeather;
+import org.apache.http.client.utils.URIBuilder;
 
 
 import java.io.IOException;
@@ -14,32 +15,27 @@ import java.net.URISyntaxException;
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
 
-
-        //System.out.println(new ValidatorToLocalization().longValidator(-100));
-        //System.out.println(new ValidatorToLocalization().latiValidator(-200));
-
-
-//        Localization localization1 = new Localization(51.2465, 22.5684, "Lublin", "Poland");
-//        Localization localization2 = new Localization(51.2465, 22.5684, "Lublieeen", "Poland");
-//        Localization localization3 = new Localization(51.2465, 22.5684, "Lutblin", "Poland");
-//        Localization localization4 = new Localization(51.2465, 22.5684, "Lubltttin", "Poland");
-//        Localization localization5 = new Localization();
-//        Localization localization6 = new Localization();
-//        Localization localization7 = new Localization();
-//        Localization localization8 = new Localization();
-//
-//        System.out.println(localization1);
-//        System.out.println(localization2);
-//        System.out.println(localization3);
-//        System.out.println(localization4);
-//        System.out.println(localization5);
-//        System.out.println(localization6);
-//        System.out.println(localization7);
-//        System.out.println(localization8);
+        URIBuilder builder = new URIBuilder()
+                .setScheme("http")
+                .setHost("apache.org")
+                .setPath("/shindig")
+                .addParameter("helloWorld", "foo&bar")
+                .setFragment("foo");
+        System.out.println(builder.toString());
 
 
-        MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
-        //System.out.println(mapperJsonToWeather.getWeatherObject(localization));
+        URIBuilder builder1 = new URIBuilder()
+                .setScheme("http")
+                .setHost("api.weatherstack.com")
+                .setPath("current")
+                .addParameter("access_key", "3f4c60639ee881f4693cada28229a5e2")
+                .addParameter("query","Lubiln");
+
+
+        System.out.println(builder1);
+
+
+        System.out.println("http://api.weatherstack.com/current?access_key=3f4c60639ee881f4693cada28229a5e2&query=Lublin");
 
 
     }
