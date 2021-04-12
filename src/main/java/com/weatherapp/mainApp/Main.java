@@ -4,6 +4,7 @@ import com.weatherapp.input.UserInput;
 import com.weatherapp.input.ValidatorToLocalization;
 import com.weatherapp.model.HttpClientToSendRequest;
 import com.weatherapp.model.MapperJsonToWeather;
+import com.weatherapp.output.UserOutput;
 import com.weatherapp.repository.LocationRepository;
 
 import java.util.InputMismatchException;
@@ -18,12 +19,14 @@ public class Main {
         HttpClientToSendRequest httpClientToSendRequest = new HttpClientToSendRequest();
         ValidatorToLocalization validatorToLocalization = new ValidatorToLocalization();
         UserInput userInput = new UserInput();
+        UserOutput userOutput = new UserOutput();
 
         Scanner scanner = new Scanner(System.in);
 
         do {
 
-            showMenu();
+            userOutput.showMenu();
+
             try {
                 choice = scanner.nextInt();
             } catch (InputMismatchException e) {
@@ -68,18 +71,6 @@ public class Main {
         } while (choice != 0);
     }
 
-    public static void showMenu() {
-        System.out.println("=========== MENU PROGRAMU POGODYNKA ===========");
-        System.out.println("[1] Dodaj lokalizację do bazy danych");
-        System.out.println("[2] Wyświetl dodane lokalizacje");
-        System.out.println("[3] Wyświetl wartości pogodowe dla miejscosości o podanym indeksie");
-        System.out.println("[4] Aktualizacja lokalizacji");
-        System.out.println("[5] Wyszukaj lokalizacje po nazwie");
-        System.out.println("[6] Dane statystyczne");
-        System.out.println("[7] Zapis danych");
-        System.out.println("[8] Odczyt danych");
-        System.out.println("[0] WYJŚCIE");
-        System.out.print("Wybór: ");
-    }
+
 
 }
