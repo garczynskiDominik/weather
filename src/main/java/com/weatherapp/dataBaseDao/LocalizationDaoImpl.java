@@ -57,16 +57,19 @@ public class LocalizationDaoImpl implements LocalizationDao {
     }
 
     @Override
-    public void update(long id, double newLatitude, double newLongitude) {
+    public void update(Localization localization, long id) {
         Session session = HibernateUtils
                 .getInstance()
                 .getSessionFactory()
                 .getCurrentSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("update Localization set latitude=:newLatitude and set longitud=:newLongitude where id=:id")
-                .setParameter("newLatitude", newLatitude)
-                .setParameter("newLongitude", newLongitude)
+        Query query = session.createQuery("update Localization set country=:newCountry, region=:newRegion, name=:newName,latitude=:newLatitude,longitude=:newLongitude where id=:id")
+                .setParameter("newCountry", localization.getCountry())
+                .setParameter("newRegion", localization.getRegion())
+                .setParameter("newName", localization.getName())
+                .setParameter("newLatitude", localization.getLatitude())
+                .setParameter("newLongitude", localization.getLongitude())
                 .setParameter("id", id);
 
         int a = query.executeUpdate();
@@ -91,5 +94,23 @@ public class LocalizationDaoImpl implements LocalizationDao {
         session.delete(localization);
         session.getTransaction().commit();
         session.close();
+    }
+
+    @Override
+    public List<Localization> findByName(String name) {
+        Session session = HibernateUtils
+                .getInstance()
+                .getSessionFactory()
+                .getCurrentSession();
+        session.beginTransaction();
+
+        List<Localization> localizations = session
+                .createQuery("from Localization where name=:name")
+                .setParameter("name", name)
+                .getResultList();
+
+        session.getTransaction().commit();
+        session.close();
+        return localizations;
     }
 }
