@@ -1,14 +1,7 @@
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.weatherapp.input.ValidatorToLocalization;
-import com.weatherapp.model.HttpClientToSendRequest;
-import com.weatherapp.model.Localization;
-import com.weatherapp.model.MapperJsonToWeather;
 import org.apache.http.client.utils.URIBuilder;
 
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 
 

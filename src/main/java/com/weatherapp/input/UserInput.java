@@ -1,8 +1,8 @@
 package com.weatherapp.input;
 
-import com.weatherapp.model.HttpClientToSendRequest;
+import com.weatherapp.connection.HttpClientToSendRequest;
 import com.weatherapp.model.Localization;
-import com.weatherapp.model.MapperJsonToWeather;
+import com.weatherapp.connection.MapperJsonToWeather;
 
 import java.util.List;
 import java.util.Scanner;

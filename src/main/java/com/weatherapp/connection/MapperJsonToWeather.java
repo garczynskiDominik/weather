@@ -1,7 +1,9 @@
-package com.weatherapp.model;
+package com.weatherapp.connection;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.weatherapp.model.Localization;
+import com.weatherapp.model.Weather;
 
 public class MapperJsonToWeather {
     private Weather weather;

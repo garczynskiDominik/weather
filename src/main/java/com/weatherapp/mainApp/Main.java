@@ -2,8 +2,8 @@ package com.weatherapp.mainApp;
 
 import com.weatherapp.input.UserInput;
 import com.weatherapp.input.ValidatorToLocalization;
-import com.weatherapp.model.HttpClientToSendRequest;
-import com.weatherapp.model.MapperJsonToWeather;
+import com.weatherapp.connection.HttpClientToSendRequest;
+import com.weatherapp.connection.MapperJsonToWeather;
 import com.weatherapp.output.UserOutput;
 import com.weatherapp.repository.LocationRepository;
 
@@ -24,9 +24,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         do {
-
             userOutput.showMenu();
-
             try {
                 choice = scanner.nextInt();
             } catch (InputMismatchException e) {
@@ -70,7 +68,6 @@ public class Main {
 
         } while (choice != 0);
     }
-
 
 
 }

@@ -1,5 +1,6 @@
-package com.weatherapp.model;
+package com.weatherapp.connection;
 
+import com.weatherapp.model.Localization;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.io.IOException;

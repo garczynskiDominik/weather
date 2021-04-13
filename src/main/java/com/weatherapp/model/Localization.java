@@ -1,7 +1,12 @@
 package com.weatherapp.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Localization {
     private static long idCounter = 1;
+    @Id
     long id;
     double latitude;
     double longitude;
