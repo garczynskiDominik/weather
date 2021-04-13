@@ -20,7 +20,6 @@ public class Main {
 
         int choice = 0;
         LocationRepository locationRepository = new LocationRepository();
-        MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
 
         UserInput userInput = new UserInput();
         UserOutput userOutput = new UserOutput();
@@ -83,7 +82,6 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         HttpClientToSendRequest httpClientToSendRequest = new HttpClientToSendRequest();
-        MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
         System.out.print("Podaj id lokalizacji: ");
 
         Localization localization = new LocalizationDaoImpl().findById(scanner.nextLong());
