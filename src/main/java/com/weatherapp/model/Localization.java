@@ -2,10 +2,13 @@ package com.weatherapp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import java.util.List;
 
 @Entity
 public class Localization {
+
     private static long idCounter = 1;
     @Id
     long id;
@@ -16,6 +19,8 @@ public class Localization {
     String country;
     @Transient
     String jsonWithInfo;
+    @OneToMany(mappedBy = "localization")
+    private List<Weather> weathers;
 
     public Localization() {
         this.id = idCounter++;
