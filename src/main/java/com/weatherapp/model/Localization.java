@@ -2,6 +2,7 @@ package com.weatherapp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Localization {
@@ -13,6 +14,7 @@ public class Localization {
     String name;
     String region;
     String country;
+    @Transient
     String jsonWithInfo;
 
     public Localization() {

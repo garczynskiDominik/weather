@@ -1,9 +1,12 @@
 package com.weatherapp.mainApp;
 
+import com.weatherapp.dataBaseDao.LocalizationDao;
+import com.weatherapp.dataBaseDao.LocalizationDaoImpl;
 import com.weatherapp.input.UserInput;
 import com.weatherapp.input.ValidatorToLocalization;
 import com.weatherapp.connection.HttpClientToSendRequest;
 import com.weatherapp.connection.MapperJsonToWeather;
+import com.weatherapp.model.Localization;
 import com.weatherapp.output.UserOutput;
 import com.weatherapp.repository.LocationRepository;
 
@@ -21,6 +24,7 @@ public class Main {
         UserInput userInput = new UserInput();
         UserOutput userOutput = new UserOutput();
 
+
         Scanner scanner = new Scanner(System.in);
 
         do {
@@ -37,6 +41,19 @@ public class Main {
             switch (choice) {
                 case 1:
                     locationRepository.addLocation();
+
+                    LocalizationDao localizationDao = new LocalizationDaoImpl();
+                    Localization localization = new Localization();
+
+
+                    localization.setCountry("Poland");
+                    localization.setName("Lublin");
+                    localization.setLatitude(56);
+                    localization.setLongitude(34);
+
+                    localizationDao.save(localization);
+
+
                     break;
                 case 2:
                     locationRepository.showAllLocations();
