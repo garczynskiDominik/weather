@@ -14,11 +14,6 @@ public class HttpClientToSendRequest {
 
 
     public String jsonFromHttpRequest(Localization localization) {
-//        String uri2 = new StringBuilder("http://api.weatherstack.com/current?access_key=3f4c60639ee881f4693cada28229a5e2&query=")
-//                .append(localization.getLatitude())
-//                .append(",")
-//                .append(localization.getLongitude())
-//                .toString();
 
         URIBuilder builder = new URIBuilder()
                 .setScheme("http")

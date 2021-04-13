@@ -21,8 +21,7 @@ public class Main {
         int choice = 0;
         LocationRepository locationRepository = new LocationRepository();
         MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
-        HttpClientToSendRequest httpClientToSendRequest = new HttpClientToSendRequest();
-        ValidatorToLocalization validatorToLocalization = new ValidatorToLocalization();
+
         UserInput userInput = new UserInput();
         UserOutput userOutput = new UserOutput();
 
@@ -50,8 +49,8 @@ public class Main {
                     showAllLocations();
                     break;
                 case 3:
-                    userInput.inputLocationIndexForecast(locationRepository.localizations);
-
+                    //userInput.inputLocationIndexForecast(locationRepository.localizations);
+                    showWeatherBasedLocation();
                     break;
                 case 4:
                     //locationRepository.updateLocation();
@@ -78,6 +77,19 @@ public class Main {
             }
 
         } while (choice != 0);
+    }
+
+    private static void showWeatherBasedLocation() {
+
+        Scanner scanner = new Scanner(System.in);
+        HttpClientToSendRequest httpClientToSendRequest = new HttpClientToSendRequest();
+        MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
+        System.out.print("Podaj id lokalizacji: ");
+
+        Localization localization = new LocalizationDaoImpl().findById(scanner.nextLong());
+        httpClientToSendRequest.jsonFromHttpRequest(localization);
+        System.out.println(new MapperJsonToWeather().getWeatherObject(localization));
+
     }
 
     private static void updateLocation() {
