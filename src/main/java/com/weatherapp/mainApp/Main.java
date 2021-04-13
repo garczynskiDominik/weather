@@ -2,6 +2,7 @@ package com.weatherapp.mainApp;
 
 import com.weatherapp.dataBaseDao.LocalizationDao;
 import com.weatherapp.dataBaseDao.LocalizationDaoImpl;
+import com.weatherapp.dataBaseDao.WeatherDaoImp;
 import com.weatherapp.input.UserInput;
 import com.weatherapp.input.ValidatorToLocalization;
 import com.weatherapp.connection.HttpClientToSendRequest;
@@ -79,14 +80,19 @@ public class Main {
     }
 
     private static void showWeatherBasedLocation() {
-
+        MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
         Scanner scanner = new Scanner(System.in);
         HttpClientToSendRequest httpClientToSendRequest = new HttpClientToSendRequest();
         System.out.print("Podaj id lokalizacji: ");
 
         Localization localization = new LocalizationDaoImpl().findById(scanner.nextLong());
         httpClientToSendRequest.jsonFromHttpRequest(localization);
-        System.out.println(new MapperJsonToWeather().getWeatherObject(localization));
+        System.out.println(mapperJsonToWeather.getWeatherObject(localization));
+        new WeatherDaoImp().save(mapperJsonToWeather.getWeatherObject(localization));
+
+        /**
+         * Trzeba dodac i lokazlizacji zeby polaczyc ze soba dwie table relacja onetomeny
+         */
 
     }
 
