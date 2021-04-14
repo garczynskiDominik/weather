@@ -4,8 +4,10 @@ import com.weatherapp.connection.HttpClientToSendRequest;
 import com.weatherapp.connection.MapperJsonToWeather;
 import com.weatherapp.dataBaseDao.LocalizationDao;
 import com.weatherapp.dataBaseDao.LocalizationDaoImpl;
+import com.weatherapp.dataBaseDao.WeatherDao;
 import com.weatherapp.dataBaseDao.WeatherDaoImp;
 import com.weatherapp.model.Localization;
+import com.weatherapp.model.Weather;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,18 +16,25 @@ import java.util.Scanner;
 public class UserDatabaseInput {
 
     public static void showWeatherBasedLocation() {
+        WeatherDao weatherDao = new WeatherDaoImp();
+        LocalizationDao localizationDao = new LocalizationDaoImpl();
         MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
         Scanner scanner = new Scanner(System.in);
         HttpClientToSendRequest httpClientToSendRequest = new HttpClientToSendRequest();
         System.out.print("Podaj id lokalizacji: ");
+        long idLocalization = scanner.nextLong();
 
-        Localization localization = new LocalizationDaoImpl().findById(scanner.nextLong());
+        Localization localization = new LocalizationDaoImpl().findById(idLocalization);
         httpClientToSendRequest.jsonFromHttpRequest(localization);
-        System.out.println(mapperJsonToWeather.getWeatherObject(localization));
-        new WeatherDaoImp().save(mapperJsonToWeather.getWeatherObject(localization));
+        Weather weather = mapperJsonToWeather.getWeatherObject(localization);
+        System.out.println(weather);
+
+        weatherDao.save(weather);
+        weatherDao.saveIdLocalization(idLocalization);
+
 
         /**
-         * Trzeba dodac i lokazlizacji zeby polaczyc ze soba dwie table relacja onetomeny
+         * Trzeba dodac id lokazlizacji zeby polaczyc ze soba dwie table relacja onetomeny
          */
 
     }

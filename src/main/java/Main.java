@@ -7,6 +7,15 @@ import java.net.URISyntaxException;
 
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
+        long id = 5;
+        String queryDataBase = new StringBuilder("update weather set localization_id=")
+                .append(id)
+                .append(" where id=")
+                .append(id)
+                .toString();
+
+        System.out.println(queryDataBase);
+
 
         URIBuilder builder = new URIBuilder()
                 .setScheme("http")
@@ -22,7 +31,7 @@ public class Main {
                 .setHost("api.weatherstack.com")
                 .setPath("current")
                 .addParameter("access_key", "3f4c60639ee881f4693cada28229a5e2")
-                .addParameter("query","Lubiln");
+                .addParameter("query", "Lubiln");
 
 
         System.out.println(builder1);

@@ -53,6 +53,11 @@ public class Main {
                 case 3:
                     //userInput.inputLocationIndexForecast(locationRepository.localizations);
                     userDatabaseInput.showWeatherBasedLocation();
+                    /**
+                     *  trzeba przerobić tą metode tak żeby po dodaniu encji w bazie danych ustawialo kolumne
+                     *                      idLocalization na id które zostało wpisane do wywyołania metody
+                     */
+
                     break;
                 case 4:
                     //locationRepository.updateLocation();

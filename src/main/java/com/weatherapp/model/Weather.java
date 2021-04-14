@@ -13,8 +13,9 @@ public class Weather {
     int humidity;
     String windDirection;
     int windSpeed;
+
     @ManyToOne
-    @JoinColumn(name = "Localization_id")
+    @JoinColumn(name = "localization_id")
     private Localization localization;
 
     public Weather() {
