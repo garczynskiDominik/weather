@@ -64,13 +64,11 @@ public class UserDatabaseInput {
         System.out.print("Podaj nazwę miejscowości: ");
         String name = scanner.nextLine();
         localizations = localizationDao.findByName(name);
-        localizations.stream()
-                .forEach(System.out::println);
-
-
-        /**
-         * ten sam temat co w wyswietlaniu lokalizacji
-         */
+//        localizations.stream()
+//                .forEach(System.out::println);
+        for (Localization localization : localizations) {
+            System.out.println(localization.getId() + ". " + localization.getName());
+        }
 
     }
 
@@ -79,14 +77,12 @@ public class UserDatabaseInput {
         List<Localization> localizations = localizationDao.findAll();
         System.out.println("=========== WSZYSTKIE ZAPISANE LOKALIZACJE ===========");
         System.out.println("Miejscowości");
-        localizations.stream()
-                .forEach(System.out::println);
-
-        /**
-         * trzeba przerobic zeby wyswietlalo tylko nazwe miejscowosci?
-         * Ew. liste zamienic na seta zeby nie powtarzały sie miejscowości ale
-         * nie wiem wtedy co z indeksami
-         */}
+//        localizations.stream()
+//                .forEach(System.out::println);
+        for (Localization localization : localizations) {
+            System.out.println(localization.getId() + ". " + localization.getName());
+        }
+    }
 
     public static void addNewLocalization() {
         Scanner scanner = new Scanner(System.in);
