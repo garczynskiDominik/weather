@@ -83,5 +83,4 @@ public class UserInput {
             System.out.println("!!! Przekroczono zakres listy lub lista jest pusta !!!");
         }
     }
-
 }
