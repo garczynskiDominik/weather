@@ -1,16 +1,14 @@
 package com.weatherapp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Localization {
 
-    private static long idCounter = 1;
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
     double latitude;
     double longitude;
@@ -23,11 +21,9 @@ public class Localization {
     private List<Weather> weathers;
 
     public Localization() {
-        this.id = idCounter++;
     }
 
     public Localization(double latitude, double longitude, String region, String country) {
-        this.id = idCounter++;
         this.latitude = latitude;
         this.longitude = longitude;
         this.region = region;
@@ -40,10 +36,6 @@ public class Localization {
 
     public void setJsonWithInfo(String jsonWithInfo) {
         this.jsonWithInfo = jsonWithInfo;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
