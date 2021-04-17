@@ -63,7 +63,9 @@ public class Main {
                     break;
                 case 6:
                     userDatabaseInput.showStatsFromLocation();
-
+                    break;
+                case 7:
+                    userDatabaseInput.deleteLocalizationById();
                     break;
                 case 0:
                     System.out.println("=========== ZAMYKAM PROGRAM ===========");

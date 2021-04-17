@@ -14,6 +14,7 @@ public class UserOutput {
         System.out.println("[4] Aktualizacja lokalizacji");
         System.out.println("[5] Wyszukaj lokalizacje po nazwie");
         System.out.println("[6] Dane statystyczne");
+        System.out.println("[7] Usuń lokalizacje");
         System.out.println("[0] WYJŚCIE");
         System.out.print("Wybór: ");
     }
