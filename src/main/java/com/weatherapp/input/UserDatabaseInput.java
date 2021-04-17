@@ -24,8 +24,24 @@ public class UserDatabaseInput {
         HttpClientToSendRequest httpClientToSendRequest = new HttpClientToSendRequest();
         System.out.print("Podaj id lokalizacji: ");
         long idLocalization = scanner.nextLong();
+        List<Localization> ids = localizationDao.findAll();
 
-        Localization localization = new LocalizationDaoImpl().findById(idLocalization);
+        boolean answer = true;
+        do {
+            for (Localization localization : ids) {
+                if (localization.getId() == idLocalization) {
+                    answer = false;
+                    break;
+                }
+            }
+            if (answer) {
+                answer = true;
+                System.out.println("Nie ma lokalizacji o podanym id, podaj poprawne id");
+                idLocalization = scanner.nextLong();
+            }
+        } while (answer);
+
+        Localization localization = localizationDao.findById(idLocalization);
         httpClientToSendRequest.jsonFromHttpRequest(localization);
         Weather weather = mapperJsonToWeather.getWeatherObject(localization);
         System.out.println(weather);
@@ -163,7 +179,6 @@ public class UserDatabaseInput {
                 .append("km/h")
                 .toString();
         System.out.println(averageInfo);
-
 
 
     }

@@ -14,8 +14,6 @@ public class UserOutput {
         System.out.println("[4] Aktualizacja lokalizacji");
         System.out.println("[5] Wyszukaj lokalizacje po nazwie");
         System.out.println("[6] Dane statystyczne");
-        System.out.println("[7] Zapis danych");
-        System.out.println("[8] Odczyt danych");
         System.out.println("[0] WYJŚCIE");
         System.out.print("Wybór: ");
     }
