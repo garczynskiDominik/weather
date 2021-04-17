@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.weatherapp.javaFXapplication.Controller">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Podaj ID lokalizacji">
@@ -14,7 +13,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField layoutX="236.0" layoutY="6.0">
+      <TextField fx:id="lokId" layoutX="236.0" layoutY="6.0">
          <font>
             <Font size="24.0" />
          </font>
@@ -49,7 +48,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="460.0" layoutY="335.0" mnemonicParsing="false" text="Wyświetl">
+      <Button layoutX="460.0" layoutY="335.0" mnemonicParsing="false" onAction="#showForecast" text="Wyświetl">
          <font>
             <Font size="24.0" />
          </font>

@@ -1,16 +1,24 @@
 package com.weatherapp.javaFXapplication;
 
+import com.weatherapp.connection.HttpClientToSendRequest;
+import com.weatherapp.connection.MapperJsonToWeather;
 import com.weatherapp.dataBaseDao.LocalizationDao;
 import com.weatherapp.dataBaseDao.LocalizationDaoImpl;
+import com.weatherapp.dataBaseDao.WeatherDao;
+import com.weatherapp.dataBaseDao.WeatherDaoImp;
 import com.weatherapp.model.Localization;
+import com.weatherapp.model.Weather;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
 
 public class Controller {
 
@@ -25,17 +33,19 @@ public class Controller {
     @FXML
     private TextField szergeo;
     @FXML
-    private TextField miejscowosc1;
+    private TextField lokId;
     @FXML
-    private TextField temperatura;
+    private Label miejscowosc1;
     @FXML
-    private TextField cisnienie;
+    private Label temperatura;
     @FXML
-    private TextField wilgotnosc;
+    private Label cisnienie;
     @FXML
-    private TextField kierunekwiatru;
+    private Label wilgotnosc;
     @FXML
-    private TextField predkoscwiatru;
+    private Label kierunekwiatru;
+    @FXML
+    private Label predkoscwiatru;
 
     public void goToAddLocationView() {
 
@@ -92,12 +102,10 @@ public class Controller {
         if (dlgeo.getText().isBlank() || dlgeo.getText().equals("Pole nie może być puste")) {
             correct = false;
             dlgeo.setText("Pole nie może być puste");
-        }
-        else if (dlgeo.getText().matches("^[a-zA-Z]+$")) {
+        } else if (dlgeo.getText().matches("^[a-zA-Z]+$")) {
             correct = false;
             dlgeo.setText("Podaj liczbę -180 - 180");
-        }
-        else {
+        } else {
             try {
                 if (Double.parseDouble(dlgeo.getText()) < -180d || Double.parseDouble(dlgeo.getText()) > 180d) {
                     correct = false;
@@ -114,12 +122,10 @@ public class Controller {
         if (szergeo.getText().isBlank() || szergeo.getText().equals("Pole nie może być puste")) {
             correct = false;
             szergeo.setText("Pole nie może być puste");
-        }
-        else if (szergeo.getText().matches("^[a-zA-Z]+$")) {
+        } else if (szergeo.getText().matches("^[a-zA-Z]+$")) {
             correct = false;
             szergeo.setText("Podaj liczbę -90 - 90");
-        }
-        else {
+        } else {
             try {
                 if (Double.parseDouble(szergeo.getText()) < -90d || Double.parseDouble(szergeo.getText()) > 90d) {
                     correct = false;
@@ -130,6 +136,40 @@ public class Controller {
             }
         }
         return correct;
+    }
+
+    public void showForecast() {
+        WeatherDao weatherDao = new WeatherDaoImp();
+        LocalizationDao localizationDao = new LocalizationDaoImpl();
+        MapperJsonToWeather mapperJsonToWeather = new MapperJsonToWeather();
+        HttpClientToSendRequest httpClientToSendRequest = new HttpClientToSendRequest();
+        long idLocalization = Long.parseLong(lokId.getText());
+        List<Localization> ids = localizationDao.findAll();
+
+        for (Localization localization : ids) {
+            if (localization.getId() == idLocalization) {
+                lokId.setText("");
+                break;
+            } else {
+                lokId.setText("Złe ID");
+            }
+        }
+
+        try {
+            Localization localization = localizationDao.findById(idLocalization);
+            httpClientToSendRequest.jsonFromHttpRequest(localization);
+            Weather weather = mapperJsonToWeather.getWeatherObject(localization);
+            miejscowosc1.setText("Miejscowość: " + localization.getName());
+            temperatura.setText("Temperatura: " + weather.getTemperature() + "\u00B0" + "C");
+            cisnienie.setText("Cisnienie: " + weather.getPressure() + "hPa");
+            wilgotnosc.setText("Wilgotność: " + weather.getHumidity() + "%");
+            kierunekwiatru.setText("Kierunek wiatru: " + weather.getWindDirection());
+            predkoscwiatru.setText("Prędkość wiatru: " + weather.getWindSpeed() + "km/h");
+
+            weatherDao.save(weather);
+        }catch (NullPointerException e) {
+
+        }
     }
 }
 
