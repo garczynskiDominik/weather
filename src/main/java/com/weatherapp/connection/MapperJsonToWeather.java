@@ -21,6 +21,9 @@ public class MapperJsonToWeather {
         weather.setPressure(current.get("pressure").getAsInt());
         weather.setWindDirection(current.get("wind_dir").getAsString());
         weather.setWindSpeed(current.get("wind_speed").getAsInt());
+        weather.setLocalization(localization);
+
+
         return weather;
     }
 

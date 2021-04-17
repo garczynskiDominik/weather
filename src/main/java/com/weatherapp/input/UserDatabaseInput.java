@@ -30,7 +30,7 @@ public class UserDatabaseInput {
         System.out.println(weather);
 
         weatherDao.save(weather);
-        weatherDao.saveIdLocalization(idLocalization);
+       // weatherDao.saveIdLocalization(idLocalization);
 
 
         /**

@@ -29,6 +29,14 @@ public class Weather {
         this.windSpeed = windSpeed;
     }
 
+    public Localization getLocalization() {
+        return localization;
+    }
+
+    public void setLocalization(Localization localization) {
+        this.localization = localization;
+    }
+
     public double getTemperature() {
         return temperature;
     }

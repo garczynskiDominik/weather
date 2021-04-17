@@ -1,6 +1,7 @@
 package com.weatherapp.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,8 +18,6 @@ public class Localization {
     String country;
     @Transient
     String jsonWithInfo;
-    @OneToMany(mappedBy = "localization")
-    private List<Weather> weathers;
 
     public Localization() {
     }
@@ -29,6 +28,8 @@ public class Localization {
         this.region = region;
         this.country = country;
     }
+
+
 
     public String getJsonWithInfo() {
         return jsonWithInfo;
