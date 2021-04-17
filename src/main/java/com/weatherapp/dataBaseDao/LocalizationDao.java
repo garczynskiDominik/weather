@@ -1,6 +1,7 @@
 package com.weatherapp.dataBaseDao;
 
 import com.weatherapp.model.Localization;
+
 import java.util.List;
 
 public interface LocalizationDao {
@@ -15,6 +16,6 @@ public interface LocalizationDao {
 
     void deleteById(long id);
 
-   List<Localization>findByName(String name);
+    List<Localization> findByName(String name);
 
 }

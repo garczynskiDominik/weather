@@ -23,23 +23,10 @@ public class UserDatabaseInput {
         Scanner scanner = new Scanner(System.in);
         HttpClientToSendRequest httpClientToSendRequest = new HttpClientToSendRequest();
         System.out.print("Podaj id lokalizacji: ");
-        long idLocalization = scanner.nextLong();
-        List<Localization> ids = localizationDao.findAll();
 
-        boolean answer = true;
-        do {
-            for (Localization localization : ids) {
-                if (localization.getId() == idLocalization) {
-                    answer = false;
-                    break;
-                }
-            }
-            if (answer) {
-                answer = true;
-                System.out.println("Nie ma lokalizacji o podanym id, podaj poprawne id");
-                idLocalization = scanner.nextLong();
-            }
-        } while (answer);
+        long idLocalization = scanner.nextLong();
+
+        idLocalization = getIdLocalization(localizationDao, idLocalization);
 
         Localization localization = localizationDao.findById(idLocalization);
         httpClientToSendRequest.jsonFromHttpRequest(localization);
@@ -49,11 +36,12 @@ public class UserDatabaseInput {
         weatherDao.save(weather);
     }
 
+
     public static void updateLocation() {
+        Localization location = new Localization();
         Scanner scanner = new Scanner(System.in);
         ValidatorToLocalization validatorToLocalization = new ValidatorToLocalization();
         LocalizationDao localizationDao = new LocalizationDaoImpl();
-        Localization location = new Localization();
 
 
         System.out.println("=========== AKTUALIZACJA LOKALIZACJI ===========");
@@ -76,29 +64,27 @@ public class UserDatabaseInput {
 
     public static void findByLocationName() {
         LocalizationDao localizationDao = new LocalizationDaoImpl();
+        Scanner scanner = new Scanner(System.in);
         List<Localization> localizations = new ArrayList<>();
 
-        Scanner scanner = new Scanner(System.in);
+
         System.out.println("=========== WYSZUKIWANIE LOKALIZACJI PO NAZWIE MIEJSCOWOŚCI ===========");
         System.out.print("Podaj nazwę miejscowości: ");
         String name = scanner.nextLine();
         localizations = localizationDao.findByName(name);
-//        localizations.stream()
-//                .forEach(System.out::println);
-        for (Localization localization : localizations) {
-            System.out.println(localization.getId() + ". " + localization.getName());
-        }
-
+        localizations.stream()
+                .forEach(x -> System.out.println(x.getId() + ". " + x.getName()));
     }
+
 
     public static void showAllLocations() {
         LocalizationDao localizationDao = new LocalizationDaoImpl();
         List<Localization> localizations = localizationDao.findAll();
+
         System.out.println("=========== WSZYSTKIE ZAPISANE LOKALIZACJE ===========");
         System.out.println("Miejscowości");
         localizations.stream()
                 .forEach(x -> System.out.println(x.getId() + ". " + x.getName()));
-
     }
 
     public static void addNewLocalization() {
@@ -108,13 +94,10 @@ public class UserDatabaseInput {
         Localization location = new Localization();
 
         System.out.println("=========== DODAWANIE NOWEJ LOKALIZACJI ===========");
-
         System.out.print("Podaj kraj: ");
         location.setCountry(validatorToLocalization.stringValidator(scanner.nextLine()));
         System.out.print("Podaj region: ");
         location.setRegion(scanner.nextLine());
-
-
         System.out.print("Podaj miejscowosc: ");
         String name = validatorToLocalization.stringValidator(scanner.nextLine());
 
@@ -179,7 +162,35 @@ public class UserDatabaseInput {
                 .append("km/h")
                 .toString();
         System.out.println(averageInfo);
+    }
 
+    public void deleteLocalizationById() {
+        LocalizationDao localizationDao = new LocalizationDaoImpl();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj id lokalizacji do usunięcia");
+        long id = scanner.nextLong();
+        localizationDao.deleteById(getIdLocalization(localizationDao, id));
+        System.out.println("=========== SKASOWANO LOKALIZACJE Z BAZY ===========");
 
+    }
+
+    private static long getIdLocalization(LocalizationDao localizationDao, long idLocalization) {
+        List<Localization> ids = localizationDao.findAll();
+        Scanner scanner = new Scanner(System.in);
+        boolean answer = true;
+        while (answer) {
+            for (Localization localization : ids) {
+                if (localization.getId() == idLocalization) {
+                    answer = false;
+                    break;
+                }
+            }
+            if (answer) {
+                answer = true;
+                System.out.println("Nie ma lokalizacji o podanym id, podaj poprawne id");
+                idLocalization = scanner.nextLong();
+            }
+        }
+        return idLocalization;
     }
 }
