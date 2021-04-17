@@ -1,5 +1,6 @@
 package com.weatherapp.mainApp;
 
+import com.weatherapp.connection.HibernateUtils;
 import com.weatherapp.dataBaseDao.LocalizationDao;
 import com.weatherapp.dataBaseDao.LocalizationDaoImpl;
 import com.weatherapp.dataBaseDao.WeatherDaoImp;
@@ -25,6 +26,7 @@ public class Main {
         UserInput userInput = new UserInput();
         UserOutput userOutput = new UserOutput();
         UserDatabaseInput userDatabaseInput = new UserDatabaseInput();
+        HibernateUtils hibernateUtils = HibernateUtils.getInstance();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -60,12 +62,7 @@ public class Main {
                     userDatabaseInput.findByLocationName();
                     break;
                 case 6:
-
-                    break;
-                case 7:
-
-                    break;
-                case 8:
+                    userDatabaseInput.showStatsFromLocation();
 
                     break;
                 case 0:
