@@ -11,6 +11,7 @@ import com.weatherapp.model.Weather;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.Scanner;
 
 public class UserDatabaseInput {
@@ -28,6 +29,7 @@ public class UserDatabaseInput {
         httpClientToSendRequest.jsonFromHttpRequest(localization);
         Weather weather = mapperJsonToWeather.getWeatherObject(localization);
         System.out.println(weather);
+
         weatherDao.save(weather);
     }
 
@@ -78,11 +80,9 @@ public class UserDatabaseInput {
         List<Localization> localizations = localizationDao.findAll();
         System.out.println("=========== WSZYSTKIE ZAPISANE LOKALIZACJE ===========");
         System.out.println("Miejscowości");
-//        localizations.stream()
-//                .forEach(System.out::println);
-        for (Localization localization : localizations) {
-            System.out.println(localization.getId() + ". " + localization.getName());
-        }
+        localizations.stream()
+                .forEach(x -> System.out.println(x.getId() + ". " + x.getName()));
+
     }
 
     public static void addNewLocalization() {
@@ -124,5 +124,47 @@ public class UserDatabaseInput {
         location.setLongitude(validatorToLocalization.longValidator(scanner.nextDouble()));
         localizationDao.save(location);
         System.out.println("=========== DODANO LOKALIZACJĘ DO BAZY ===========");
+    }
+
+    public void showStatsFromLocation() {
+        LocalizationDao localizationDao = new LocalizationDaoImpl();
+        WeatherDao weatherDao = new WeatherDaoImp();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Podaj id lokalizacji: ");
+        long idLocalization = scanner.nextLong();
+
+        List<Weather> weathers = weatherDao
+                .getAllWeathersByLocalization(localizationDao.findById(idLocalization));
+        OptionalDouble averageTemperature = weathers.stream()
+                .mapToDouble(Weather::getTemperature)
+                .average();
+        OptionalDouble averagePressure = weathers.stream()
+                .mapToDouble(Weather::getPressure)
+                .average();
+        OptionalDouble averageHumidity = weathers.stream()
+                .mapToDouble(Weather::getHumidity)
+                .average();
+        OptionalDouble averageWindSpeed = weathers.stream()
+                .mapToDouble(Weather::getWindSpeed)
+                .average();
+        String averageInfo = new StringBuilder("średnia temperatura = ")
+                .append(averageTemperature.getAsDouble())
+                .append("\u00B0 ")
+                .append(" C ")
+                .append(", średnie ciśnienie = ")
+                .append(averagePressure.getAsDouble())
+                .append("hPa")
+                .append(", średnia wilgotność = ")
+                .append(averageHumidity.getAsDouble())
+                .append("%")
+                .append(", średnia prędkość wiatru = ")
+                .append(averageWindSpeed.getAsDouble())
+                .append("km/h")
+                .toString();
+        System.out.println(averageInfo);
+
+
+
     }
 }
