@@ -32,6 +32,5 @@ public class HibernateUtils {
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-
 }
 

@@ -21,14 +21,6 @@ public class Weather {
     public Weather() {
     }
 
-    public Weather(double temperature, int pressure, int humidity, String windDirection, int windSpeed) {
-        this.temperature = temperature;
-        this.pressure = pressure;
-        this.humidity = humidity;
-        this.windDirection = windDirection;
-        this.windSpeed = windSpeed;
-    }
-
     public Localization getLocalization() {
         return localization;
     }

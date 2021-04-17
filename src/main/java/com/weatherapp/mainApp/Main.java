@@ -22,11 +22,9 @@ public class Main {
 
         int choice = 0;
         LocationRepository locationRepository = new LocationRepository();
-
         UserInput userInput = new UserInput();
         UserOutput userOutput = new UserOutput();
         UserDatabaseInput userDatabaseInput = new UserDatabaseInput();
-
 
         Scanner scanner = new Scanner(System.in);
 
@@ -40,7 +38,6 @@ public class Main {
                 break;
             }
 
-
             switch (choice) {
                 case 1:
                     // locationRepository.addLocation();
@@ -53,11 +50,6 @@ public class Main {
                 case 3:
                     //userInput.inputLocationIndexForecast(locationRepository.localizations);
                     userDatabaseInput.showWeatherBasedLocation();
-                    /**
-                     *  trzeba przerobić tą metode tak żeby po dodaniu encji w bazie danych ustawialo kolumne
-                     *                      idLocalization na id które zostało wpisane do wywyołania metody
-                     */
-
                     break;
                 case 4:
                     //locationRepository.updateLocation();
@@ -85,5 +77,4 @@ public class Main {
 
         } while (choice != 0);
     }
-
 }

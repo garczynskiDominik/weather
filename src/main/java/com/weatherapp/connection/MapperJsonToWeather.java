@@ -8,7 +8,6 @@ import com.weatherapp.model.Weather;
 public class MapperJsonToWeather {
     private Weather weather;
 
-
     public Weather getWeatherObject(Localization localization) {
         String myJSONString = localization.getJsonWithInfo();
         JsonObject jobj = new Gson().fromJson(myJSONString, JsonObject.class);
@@ -22,7 +21,6 @@ public class MapperJsonToWeather {
         weather.setWindDirection(current.get("wind_dir").getAsString());
         weather.setWindSpeed(current.get("wind_speed").getAsInt());
         weather.setLocalization(localization);
-
 
         return weather;
     }

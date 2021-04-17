@@ -28,15 +28,7 @@ public class UserDatabaseInput {
         httpClientToSendRequest.jsonFromHttpRequest(localization);
         Weather weather = mapperJsonToWeather.getWeatherObject(localization);
         System.out.println(weather);
-
         weatherDao.save(weather);
-       // weatherDao.saveIdLocalization(idLocalization);
-
-
-        /**
-         * Trzeba dodac id lokazlizacji zeby polaczyc ze soba dwie table relacja onetomeny
-         */
-
     }
 
     public static void updateLocation() {
@@ -98,15 +90,36 @@ public class UserDatabaseInput {
         ValidatorToLocalization validatorToLocalization = new ValidatorToLocalization();
         LocalizationDao localizationDao = new LocalizationDaoImpl();
         Localization location = new Localization();
+
         System.out.println("=========== DODAWANIE NOWEJ LOKALIZACJI ===========");
+
         System.out.print("Podaj kraj: ");
         location.setCountry(validatorToLocalization.stringValidator(scanner.nextLine()));
         System.out.print("Podaj region: ");
         location.setRegion(scanner.nextLine());
+
+
         System.out.print("Podaj miejscowosc: ");
-        location.setName(validatorToLocalization.stringValidator(scanner.nextLine()));
+        String name = validatorToLocalization.stringValidator(scanner.nextLine());
+
+        List<Localization> localizations = localizationDao.findAll();
+        boolean answer = false;
+        do {
+            for (Localization localization : localizations) {
+                if (localization.getName().equals(name)) {
+                    System.out.println("Podana miejscowosc jest już na liscie, podaj nową miejscowość");
+                    answer = true;
+                    name = validatorToLocalization.stringValidator(scanner.nextLine());
+                    break;
+                } else
+                    answer = false;
+            }
+        } while (answer);
+        location.setName(name);
+
         System.out.print("Podaj szerokość geograficzną: ");
-        location.setLatitude(validatorToLocalization.latiValidator(scanner.nextDouble()));
+        location.setLatitude(validatorToLocalization
+                .latiValidator(scanner.nextDouble()));
         System.out.print("Podaj długość geograficzną: ");
         location.setLongitude(validatorToLocalization.longValidator(scanner.nextDouble()));
         localizationDao.save(location);

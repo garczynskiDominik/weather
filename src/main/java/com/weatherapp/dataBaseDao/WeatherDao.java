@@ -5,6 +5,6 @@ import com.weatherapp.model.Weather;
 
 public interface WeatherDao {
     void save(Weather weather);
-    void saveIdLocalization(long id);
+
 
 }
