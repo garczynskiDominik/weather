@@ -39,7 +39,6 @@ public class Main {
                 System.out.println("=========== ZAMYKAM PROGRAM ===========");
                 break;
             }
-
             switch (choice) {
                 case 1:
                     // locationRepository.addLocation();
@@ -73,7 +72,6 @@ public class Main {
                 default:
                     System.out.println("!!! PODANO ZŁĄ LICZBĘ !!!");
             }
-
         } while (choice != 0);
     }
 }
